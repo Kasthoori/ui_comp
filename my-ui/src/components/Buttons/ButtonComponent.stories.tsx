@@ -45,3 +45,29 @@ export const Primary: Story = {
         disabled: false,
     }
 };
+
+export const Danger: Story = {
+    args: {
+        label: 'Danger Button',
+        bgColor: '#ef4444',
+        textColor: '#ffffff',
+        fontSize: 16,
+        radius: 4,
+        size: 'md',
+        fullWidth: false,
+        disabled: false,
+    }
+};
+
+// export const Clickable: Story = {
+//     args: {
+//         label: 'Press',
+//     },
+//     play: async ({canvasElement}) => {
+//         const canvas = within(canvasElement);
+//         const btn = await canvas.findByRole('button', {name: /press/i});
+//         await userEvent.click(btn);
+//         expect(btn).toHaveFocus();
+//     }
+
+// }
