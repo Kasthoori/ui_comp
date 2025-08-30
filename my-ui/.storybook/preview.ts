@@ -1,20 +1,51 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview, Decorator } from '@storybook/react-vite'
+import React from 'react';
+import '../src/index.css';
+
+// const preview: Preview = {
+//   parameters: {
+//     controls: {
+//       matchers: {
+//         color: /(background|color)$/i,
+//         date: /Date$/i,
+//       },
+//     },
+//     a11y: {
+//       test: 'todo'
+//     }
+//   },
+//   decorators: [withTheme],
+// };
+
+export const globalTypes = {
+  theme: {
+    description: 'Global theme for component',
+    defaultValue: 'light',
+    toolbar: {
+      icon: 'mirror',
+      items: [
+        { value: 'light', title: 'Light' },
+        { value: 'dark', title: 'Dark'},
+      ],
+      showName: true,
+    },
+  },
+};
+
+const withTheme: Decorator = (Story, context) => {
+  const theme = context.globals.theme;
+  if (typeof document !== 'undefined') {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }
+  return Story();
+};
 
 const preview: Preview = {
+  decorators: [withTheme],
   parameters: {
-    controls: {
-      matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
-      },
-    },
-
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+    controls: {expanded: true},
+    a11y: {element: '#root', manual: false},
+    layout: 'centered',
   },
 };
 
