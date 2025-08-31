@@ -4,7 +4,7 @@ on:
     push:
         branches: [ "master" ]
         paths:
-            - 'my-ui/**'
+            - './my-ui/**'
             - '.github/workflows/**'
     pull_request:
         branches: [ "master" ]
