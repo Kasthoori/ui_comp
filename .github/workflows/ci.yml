@@ -28,7 +28,10 @@ jobs:
           cache-dependency-path: my-ui/yarn.lock
 
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile 
+
+      - name: Install Playwright
+        run: yarn playwright install
 
       - name: Type check
         run: yarn tsc --noEmit
