@@ -1,16 +1,10 @@
 name: CI
 
 on:
-    push:
-        branches: [ master ]
-        paths:
-            - 'my-ui/**'
-            - '.github/workflows/**'
-    pull_request:
-        branches: [ master ]
-        paths:
-            - 'my-ui/**'
-            - '.github/workflows/**'
+    push: {branches: [ "master" ]}
+    pull_request: { branches: ["master"]}
+    workflow_dispatch:
+       
 defaults:
     run:
         working-directory: my-ui
@@ -29,9 +23,11 @@ jobs:
 
       - name: Install
         run: yarn install --frozen-lockfile
+        working-directory: my-ui
 
       - name: Type check
         run: yarn tsc --noEmit
+        working-directory: my-ui
 
       - name: Unit tests
         run: yarn test
