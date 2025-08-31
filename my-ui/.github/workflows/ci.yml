@@ -3,6 +3,9 @@ name: CI
 on:
   pull_request:
     branches: [ master ]
+    paths:
+        - 'my-ui/**'
+        - '.github/workflows/**'
 
 jobs:
   ui-checks:
