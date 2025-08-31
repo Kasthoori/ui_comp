@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-//import { within, userEvent, expect } from '@storybook/addon-vitest'
 import { ButtonComponent } from './ButtonComponent'
+import { expect, userEvent, within } from 'storybook/internal/test';
 
 const meta: Meta<typeof ButtonComponent> = {
     title: 'Components/Button',
@@ -59,15 +59,16 @@ export const Danger: Story = {
     }
 };
 
-// export const Clickable: Story = {
-//     args: {
-//         label: 'Press',
-//     },
-//     play: async ({canvasElement}) => {
-//         const canvas = within(canvasElement);
-//         const btn = await canvas.findByRole('button', {name: /press/i});
-//         await userEvent.click(btn);
-//         expect(btn).toHaveFocus();
-//     }
+export const Clickable: Story = {
+    args: {
+        label: 'Pressed',
+    },
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+        const btn = await canvas.findByRole('button', {name: /pressed/i});
+        await userEvent.click(btn);
+        expect(btn).toBeEnabled();
+        expect(btn).toHaveTextContent('Pressed');
+    }
 
-// }
+}
